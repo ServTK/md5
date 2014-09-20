@@ -25,4 +25,5 @@ void DLLEXPORT cvs_MD5Final PROTO((unsigned char digest[16], struct cvs_MD5Conte
 void cvs_MD5Transform PROTO((cvs_uint32 buf[4], const unsigned char in[64]));
 void MD5_String(const char * string, char * output);
 void MD5_Binary(const char * string, unsigned char * output);
+DLLEXPORT char* generate_hashvalues(const char*, char*, int);
 #endif /* _MD5CALC_H_ */

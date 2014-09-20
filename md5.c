@@ -482,3 +482,26 @@ const unsigned char inraw[64];
 	buf[3] += d;
 }
 #endif
+
+char *generate_hashvalues(const char *name, char *outbuffer, int buflen)
+{
+	struct cvs_MD5Context context;
+	unsigned char checksum[16];
+	int i;
+
+	if (buflen < 33)
+		return 0;
+
+	cvs_MD5Init(&context);
+	cvs_MD5Update(&context, name, strlen(name));
+	cvs_MD5Final(checksum, &context);
+
+	for (i = 0; i < 16; i++)
+	{
+		sprintf(&outbuffer[i * 2], "%02x", (unsigned int)checksum[i]);
+	}
+
+	outbuffer[32] = 0;
+	return outbuffer;
+
+}
